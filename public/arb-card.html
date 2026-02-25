@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AR Business Card</title>
+  <!-- A-Frame and MindAR Scripts -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- MindAR Image Tracking Context Setup -->
+  <a-scene
+    mindar-image="imageTargetSrc: /targets/targets_combined.mind; autoStart: true; filterMinCF: 0.0001; filterBeta: 0.001; missTolerance: 10;"
+    color-space="sRGB" renderer="colorManagement: true" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <!-- Assets to preload for AR Scene -->
+    <a-assets>
+      <img id="card" src="/Images/Polito_upscale%20(1).jpg" crossorigin="anonymous" />
+      <a-asset-item id="boyModel"
+        src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF-Binary/CesiumMan.glb"
+        crossorigin="anonymous"></a-asset-item>
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Target 0: Front Side of the Card -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <!-- Overlay image (Card Graphic). Parallel to the target. -->
+      <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0" material="side: double"></a-plane>
+
+      <!-- Standing Boy Model (in front of the image plane, at Z = +0.1) -->
+      <a-gltf-model rotation="0 0 0" position="0 -0.4 0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
+    </a-entity>
+
+    <!-- Target 1: Back Side (Inverse) of the Card -->
+    <!-- We adjust the calculations here so that when viewed from the back,
+         the content occupies the EXACT SAME physical space as the front side. -->
+    <a-entity mindar-image-target="targetIndex: 1">
+      <!-- We rotate the overlay 180 on Y so it faces appropriately from the back -->
+      <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 180 0" material="side: double"></a-plane>
+
+      <!-- The Boy Model must be mirrored in Z and rotated 180 on Y.
+           This means position Z goes from +0.1 to -0.1, making him technically 
+           stand "behind" the card tracker when seen from the back, which keeps him 
+           physically consistent with the real-world scene! -->
+      <a-gltf-model rotation="0 180 0" position="0 -0.4 -0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
+    </a-entity>
+  </a-scene>
+</body>
+
+</html>
