@@ -40,19 +40,6 @@
       <a-gltf-model rotation="0 0 0" position="0 -0.4 0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
     </a-entity>
 
-    <!-- Target 1: Back Side (Inverse) of the Card -->
-    <!-- We adjust the calculations here so that when viewed from the back,
-         the content occupies the EXACT SAME physical space as the front side. -->
-    <a-entity mindar-image-target="targetIndex: 1">
-      <!-- We rotate the overlay 180 on Y so it faces appropriately from the back -->
-      <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 180 0" material="side: double"></a-plane>
-
-      <!-- The Boy Model must be mirrored in Z and rotated 180 on Y.
-           This means position Z goes from +0.1 to -0.1, making him technically 
-           stand "behind" the card tracker when seen from the back, which keeps him 
-           physically consistent with the real-world scene! -->
-      <a-gltf-model rotation="0 180 0" position="0 -0.4 -0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
-    </a-entity>
   </a-scene>
 </body>
 
