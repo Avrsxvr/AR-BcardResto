@@ -31,8 +31,8 @@
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Target 0: Card — rotated -90° on X so everything stands upright -->
-    <a-entity mindar-image-target="targetIndex: 0" rotation="-90 0 0">
+    <!-- Target 0: Card — rotated +90° on X so everything stands upright and faces the viewer -->
+    <a-entity mindar-image-target="targetIndex: 0" rotation="90 0 0">
 
       <!-- Card image plane: width=1, height=1.5 to match original 4096×6144 (2:3) resolution -->
       <a-plane src="#card" position="0 0.75 0" height="1.5" width="1" rotation="0 0 0"
