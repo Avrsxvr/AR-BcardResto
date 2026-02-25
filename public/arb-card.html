@@ -31,13 +31,15 @@
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Target 0: Front Side of the Card -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <!-- Overlay image (Card Graphic). Parallel to the target. -->
-      <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0" material="side: double"></a-plane>
+    <!-- Target 0: Card — rotated -90° on X so everything stands upright -->
+    <a-entity mindar-image-target="targetIndex: 0" rotation="-90 0 0">
 
-      <!-- Standing Boy Model (in front of the image plane, at Z = +0.1) -->
-      <a-gltf-model rotation="0 0 0" position="0 -0.4 0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
+      <!-- Card image plane: width=1, height=1.5 to match original 4096×6144 (2:3) resolution -->
+      <a-plane src="#card" position="0 0.75 0" height="1.5" width="1" rotation="0 0 0"
+        material="side: double"></a-plane>
+
+      <!-- Boy model standing in front of the upright card, at the base -->
+      <a-gltf-model rotation="0 0 0" position="0 -0.1 0.15" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
     </a-entity>
 
   </a-scene>
