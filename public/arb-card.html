@@ -31,15 +31,16 @@
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Target 0: Card — rotated +90° on X so everything stands upright and faces the viewer -->
-    <a-entity mindar-image-target="targetIndex: 0" rotation="90 0 0">
+    <!-- Target 0: Set rotation to 0 0 0 so everything matches the target exactly -->
+    <a-entity mindar-image-target="targetIndex: 0" rotation="0 0 0">
 
       <!-- Card image plane: width=1, height=1.5 to match original 4096×6144 (2:3) resolution -->
-      <a-plane src="#card" position="0 0.75 0" height="1.5" width="1" rotation="0 0 0"
-        material="side: double"></a-plane>
+      <!-- No rotation on X, meaning it overlays flat on top of the original physical marker. -->
+      <a-plane src="#card" position="0 0 0" height="1.5" width="1" rotation="0 0 0" material="side: double"></a-plane>
 
-      <!-- Boy model standing in front of the upright card, at the base -->
-      <a-gltf-model rotation="0 0 0" position="0 -0.1 0.15" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
+      <!-- Boy model standing on the card (base at Z=0.1 to sit slightly on top of the card) -->
+      <!-- Rotating it 90 degrees on the X axis so the boy stands UP out of the card. -->
+      <a-gltf-model rotation="90 0 0" position="0 -0.4 0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
     </a-entity>
 
   </a-scene>
