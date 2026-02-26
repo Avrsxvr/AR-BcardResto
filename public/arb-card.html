@@ -15,30 +15,21 @@
 </head>
 
 <body>
-  <!-- MindAR Image Tracking Context Setup -->
   <a-scene
-    mindar-image="imageTargetSrc: /targets/targets_combined.mind; autoStart: true; filterMinCF: 0.0001; filterBeta: 0.001; missTolerance: 10;"
+    mindar-image="imageTargetSrc: /targets/targets%20(6).mind; autoStart: true; filterMinCF: 0.0001; filterBeta: 0.001; missTolerance: 10;"
     color-space="sRGB" renderer="colorManagement: true" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
-    <!-- Assets to preload for AR Scene -->
     <a-assets>
-      <img id="card" src="/Images/Polito_upscale%20(1).jpg" crossorigin="anonymous" />
-      <a-asset-item id="boyModel"
-        src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF-Binary/CesiumMan.glb"
-        crossorigin="anonymous"></a-asset-item>
+      <img id="cardOverlay" src="/Images/Polito_upscale%20(1).jpg" crossorigin="anonymous" />
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Target 0: Simple straight-on AR tracking -->
+    <!-- Target 1 & 0: Straight AR overlay -->
     <a-entity mindar-image-target="targetIndex: 0">
-
-      <!-- Card image plane matching the 2:3 aspect ratio -->
-      <a-plane src="#card" position="0 0 0" height="1.5" width="1" rotation="0 0 0" material="side: double"></a-plane>
-
-      <!-- Boy model placed straight on the card -->
-      <a-gltf-model rotation="0 0 0" position="0 -0.4 0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
+      <a-plane src="#cardOverlay" position="0 0 0.01" height="1.5" width="1" rotation="0 0 0"
+        material="side: double"></a-plane>
     </a-entity>
 
   </a-scene>
