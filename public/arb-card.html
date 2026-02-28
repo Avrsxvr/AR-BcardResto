@@ -22,19 +22,29 @@
 
     <a-assets>
       <img id="cardOverlay" src="/Images/Polito_upscale%20(1).jpg" crossorigin="anonymous" />
+      <a-asset-item id="boyModel"
+        src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF-Binary/CesiumMan.glb"
+        crossorigin="anonymous"></a-asset-item>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Target 1 & 0: Standing AR card -->
+    <!-- Target 1 & 0: Character standing on card with backdrop -->
     <a-entity mindar-image-target="targetIndex: 0">
       <!-- 
-        Standing effect: 
-        Rotation 90 0 0 rotates the XY plane into the XZ plane.
-        Position 0 0 0.75 moves the center so the bottom edge (at local -0.75) 
-        sits exactly at Z=0 (on the physical card).
+        Standing character: 
+        Rotation 90 0 0 makes him stand UP out of the card.
+        Positioned towards the front of the marker.
       -->
-      <a-plane src="#cardOverlay" position="0 0 0.75" height="1.5" width="1" rotation="90 0 0"
+      <a-gltf-model rotation="90 0 0" position="0 -0.4 0.1" scale="0.4 0.4 0.4" src="#boyModel"></a-gltf-model>
+
+      <!-- 
+        Standing backdrop:
+        Rotation 90 0 0 makes it a vertical wall.
+        Position 0 0.5 0.75 moves it BEHIND the model (relative to Z-up out of card)
+        and lifts it so it stands on the marker.
+      -->
+      <a-plane src="#cardOverlay" position="0 0.5 0.75" height="1.5" width="1" rotation="90 0 0"
         material="side: double"></a-plane>
     </a-entity>
 
