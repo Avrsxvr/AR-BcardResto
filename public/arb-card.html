@@ -29,10 +29,12 @@
     <!-- Target 1 & 0: Standing AR card -->
     <a-entity mindar-image-target="targetIndex: 0">
       <!-- 
-        Rotate -90 on X and lift by 0.75 
-        so the image stands UP perpendicularly from the card floor
+        Standing effect: 
+        Rotation 90 0 0 rotates the XY plane into the XZ plane.
+        Position 0 0 0.75 moves the center so the bottom edge (at local -0.75) 
+        sits exactly at Z=0 (on the physical card).
       -->
-      <a-plane src="#cardOverlay" position="0 0.75 0" height="1.5" width="1" rotation="-90 0 0"
+      <a-plane src="#cardOverlay" position="0 0 0.75" height="1.5" width="1" rotation="90 0 0"
         material="side: double"></a-plane>
     </a-entity>
 
